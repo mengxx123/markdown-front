@@ -1,5 +1,5 @@
 <template>
-    <my-page title="HTML 转 Markdown">
+    <my-page title="HTML 转 Markdown" :page="page">
         <textarea class="textarea" v-model="result" rows="10" placeholder="HTML"></textarea>
         <br>
         <ui-raised-button class="btn" primary label="转换" @click="html2md" />
@@ -18,11 +18,6 @@
                 result: '',
                 page: {
                     menu: [
-                        {
-                            type: 'icon',
-                            icon: 'help',
-                            to: '/help'
-                        }
                     ]
                 }
             }
@@ -48,7 +43,7 @@
                     return
                 }
                 this.code = toMarkdown(text, {})
-                if (!this.isAddMenu) {
+                if (window.intent && !this.isAddMenu) {
                     this.isAddMenu = true
                     this.page.menu.push({
                         type: 'icon',

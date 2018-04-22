@@ -1,5 +1,5 @@
 <template>
-    <my-page title="Markdown 转 HTML">
+    <my-page title="Markdown 转 HTML" :page="page">
         <textarea class="textarea" v-model="code" rows="10" placeholder="Markdown"></textarea>
         <br>
         <ui-raised-button class="btn" primary label="转换" @click="encode" />
@@ -18,11 +18,11 @@
                 result: '',
                 page: {
                     menu: [
-                        {
-                            type: 'icon',
-                            icon: 'help',
-                            to: '/help'
-                        }
+                        // {
+                        //     type: 'icon',
+                        //     icon: 'help',
+                        //     to: '/help'
+                        // }
                     ]
                 }
             }
@@ -65,7 +65,7 @@
                     // smartypants: false
                 })
                 this.result = marked(text)
-                if (!this.isAddMenu) {
+                if (window.intent && !this.isAddMenu) {
                     this.isAddMenu = true
                     this.page.menu.push({
                         type: 'icon',
