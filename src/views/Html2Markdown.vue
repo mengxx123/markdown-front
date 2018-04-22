@@ -25,17 +25,17 @@
         mounted() {
             this.init()
         },
-        init() {
-            this.initWebIntents()
-        },
-        initWebIntents() {
-            if (!window.intent) {
-                return
-            }
-            let data = window.intent.data
-            this.result = data
-        },
         methods: {
+            init() {
+                this.initWebIntents()
+            },
+            initWebIntents() {
+                if (!window.intent) {
+                    return
+                }
+                let data = window.intent.data
+                this.result = data
+            },
             html2md() {
                 var text = this.result
                 if (!text) {
